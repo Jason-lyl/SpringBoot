@@ -33,7 +33,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.41</version>
+      <version>8.0.17</version>
     </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>
@@ -92,6 +92,13 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+        <plugin>
+
+          <!--maven 无法install 去githubclone 然后mvn install-->
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+        </plugin>
         <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
@@ -104,16 +111,24 @@
         <plugin>
           <groupId>org.mybatis.generator</groupId>
           <artifactId>mybatis-generator-maven-plugin</artifactId>
-          <version>1.3.5</version>
+          <version>1.3.4</version>
           <executions>
             <execution>
               <id>mybatis generator</id>
               <phase>package</phase>
               <goals>
-                <goal>generator</goal>
+<!--                <goal>generator</goal>-->
               </goals>
             </execution>
           </executions>
+          <!--添加mysql 依赖否则报错 mybatis-generator-maven-plugin:generate failed:Exception getting JDBC Driver-->
+          <dependencies>
+            <dependency>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <version>8.0.17</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <!--允许移动生成的文件-->
             <verbos>true</verbos>
