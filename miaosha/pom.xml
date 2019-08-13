@@ -131,7 +131,7 @@
           </dependencies>
           <configuration>
             <!--允许移动生成的文件-->
-            <verbos>true</verbos>
+<!--            <verbos>true</verbos>-->
             <!--允许自动覆盖文件 -->
             <overwrite>true</overwrite>
             <configurationFile>
