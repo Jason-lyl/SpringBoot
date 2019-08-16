@@ -9,6 +9,7 @@ import com.maioshaproject.error.BusinessException;
 import com.maioshaproject.error.EmBusinessError;
 import com.maioshaproject.server.UserService;
 import com.maioshaproject.server.model.UserModel;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -76,6 +77,28 @@ public class UserServiceImpl implements UserService {
 
 
 }
+
+    @Override
+    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException {
+
+        // 通过用户的手机获取用户信息
+        UserDO userDO = userDOMapper.selectByTelphone(telphone);
+        if (userDO == null){
+            throw new BusinessException(EmBusinessError.USER_LOGIN_FALI);
+        }
+        UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(userDO.getId());
+        UserModel userModel = convertFromDataObject(userDO, userPasswordDO);
+
+        //比对用户信息内加密的密码是否和传输进来的密码相匹配
+        if (!StringUtils.equals(encrptPassword, userModel.getEncrptPassword())){
+            throw new BusinessException(EmBusinessError.USER_LOGIN_FALI);
+
+        }
+        return userModel;
+
+
+
+    }
 
     private UserPasswordDO convertPasswordFromModel(UserModel userModel){
         if (userModel == null){
