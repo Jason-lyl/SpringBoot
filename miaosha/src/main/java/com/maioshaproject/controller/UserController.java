@@ -13,9 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.soap.Name;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -33,18 +37,18 @@ public class UserController extends  BaseController {
 
 
     //用户注册接口
-    @RequestMapping(value = "/regist", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/register", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType register(@RequestParam(name = "telphone") String telphone,
                                      @RequestParam(name = "otpCode") String optCode,
                                      @RequestParam(name = "name") String name,
                                      @RequestParam(name = "gender") Integer gender,
                                      @RequestParam(name = "age") Integer age,
-                                     @RequestParam(name = "password") String password) throws BusinessException {
+                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         //验证手机号和对应otpCode相符合
-       String inSesstionOtpCode =  this.httpServletRequest.getSession().getAttribute(telphone).toString();
-       if(!com.alibaba.druid.util.StringUtils.equals(optCode, inSesstionOtpCode)){
+        String inSesstionOtpCode =  (String)this.httpServletRequest.getSession().getAttribute(telphone);
+        if(!com.alibaba.druid.util.StringUtils.equals(optCode, inSesstionOtpCode)){
 
            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"短信验证码不正确");
 
@@ -54,14 +58,26 @@ public class UserController extends  BaseController {
         UserModel userModel = new UserModel();
        userModel.setTelphone(telphone);
        userModel.setName(name);
-       userModel.setGender(gender);
+       userModel.setGender(new Byte(String.valueOf(gender.intValue())));
        userModel.setAge(age);
-       userModel.setEncrptPassword(MD5Encoder.encode(password.getBytes()));
-       userModel.setRegisterMode("byphone");
+//       userModel.setEncrptPassword(MD5Encoder.encode(password.getBytes())); 只支持16位
 
+        userModel.setEncrptPassword(this.EncodeByMD5(password));
+       userModel.setRegisterMode("byphone");
        userService.register(userModel);
 
         return  CommonReturnType.create(null);
+    }
+
+
+    public String EncodeByMD5(String string) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        //确定计算方法
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        BASE64Encoder base64Encoder = new BASE64Encoder();
+        //加密字符串
+        String newStr = base64Encoder.encode(md5.digest(string.getBytes("utf-8")));
+        return newStr;
+
     }
 
 

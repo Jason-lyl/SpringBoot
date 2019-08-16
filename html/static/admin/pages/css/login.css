@@ -132,7 +132,7 @@ Login page
   border: none; }
 
 .login .content .form-actions .btn-default:hover {
-  background-color: #fafaff;
+  background-color: #fafaff; 
   color: #45b6af; }
 
 .login .content .forget-password {
