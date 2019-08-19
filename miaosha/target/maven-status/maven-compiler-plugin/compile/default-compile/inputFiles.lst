@@ -1,2 +1,17 @@
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/response/CommonReturnType.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/controller/BaseController.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/error/EmBusinessError.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/dao/UserPasswordDOMapper.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/controller/viewobject/UserVO.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/error/CommonError.java
 /Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/App.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/dao/UserDOMapper.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/server/UserService.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/dataObject/UserPasswordDO.java
 /Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/DataObject.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/dataObject/UserDO.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/validator/ValidationResult.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/server/impl/UserServiceImpl.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/error/BusinessException.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/server/model/UserModel.java
+/Users/jason/Desktop/java/SpringBoot/miaosha/src/main/java/com/maioshaproject/controller/UserController.java

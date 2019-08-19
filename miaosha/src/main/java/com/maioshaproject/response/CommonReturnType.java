@@ -20,7 +20,7 @@ public class CommonReturnType {
         CommonReturnType type = new CommonReturnType();
         type.setStatus(status);
         type.setData(result);
-        return  type;
+        return type;
     }
 
 

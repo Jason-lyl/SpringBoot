@@ -1,6 +1,7 @@
 package com.maioshaproject.dao;
 
 import com.maioshaproject.dataObject.UserPasswordDO;
+import org.springframework.stereotype.Service;
 
 public interface UserPasswordDOMapper {
     /**
