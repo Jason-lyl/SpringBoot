@@ -1,17 +1,15 @@
-package com.maioshaproject.server;
+package com.maioshaproject.service;
 
 import com.maioshaproject.error.BusinessException;
-import com.maioshaproject.server.model.ItemModel;
-import org.springframework.stereotype.Component;
+import com.maioshaproject.service.model.ItemModel;
 
 import java.util.List;
 
-@Component
+
 public interface ItemService {
 
     //创建商品
-    ItemModel createItem(ItemModel itemModel) throws BusinessException;
-
+    ItemModel createItems(ItemModel itemModel) throws BusinessException;
     //商品列表浏览
     List<ItemModel> listItem();
 

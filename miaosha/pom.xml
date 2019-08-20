@@ -129,7 +129,7 @@
               <id>mybatis generator</id>
               <phase>package</phase>
               <goals>
-<!--                <goal>generator</goal>-->
+                <goal>generate</goal>
               </goals>
             </execution>
           </executions>
@@ -140,7 +140,6 @@
               <artifactId>mysql-connector-java</artifactId>
               <version>8.0.17</version>
             </dependency>
-
           </dependencies>
           <configuration>
             <!--允许移动生成的文件-->

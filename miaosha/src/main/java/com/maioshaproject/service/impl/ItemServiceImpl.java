@@ -1,4 +1,4 @@
-package com.maioshaproject.server.impl;
+package com.maioshaproject.service.impl;
 
 import com.maioshaproject.dao.ItemDOMapper;
 import com.maioshaproject.dao.ItemStockDOMapper;
@@ -6,18 +6,21 @@ import com.maioshaproject.dataObject.ItemDO;
 import com.maioshaproject.dataObject.ItemStockDO;
 import com.maioshaproject.error.BusinessException;
 import com.maioshaproject.error.EmBusinessError;
-import com.maioshaproject.server.ItemService;
-import com.maioshaproject.server.model.ItemModel;
+import com.maioshaproject.service.ItemService;
+import com.maioshaproject.service.model.ItemModel;
 import com.maioshaproject.validator.ValidationResult;
 import com.maioshaproject.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ItemServiceImpl  implements ItemService {
+@Service
+public class ItemServiceImpl  implements ItemService  {
 
     @Autowired
     private ValidatorImpl validator;
@@ -55,7 +58,7 @@ public class ItemServiceImpl  implements ItemService {
 
     @Override
     @Transactional
-    public ItemModel createItem(ItemModel itemModel) throws BusinessException {
+    public ItemModel createItems(ItemModel itemModel) throws BusinessException {
 
         //检验入参
         ValidationResult result = validator.validate(itemModel);
@@ -75,12 +78,18 @@ public class ItemServiceImpl  implements ItemService {
 
         //返回创建完成的对象
         return  this.getItemById(itemModel.getId());
-
     }
+
 
     @Override
     public List<ItemModel> listItem() {
-        return null;
+        List<ItemDO> itemDOList = itemDOMapper.listItem();
+        List<ItemModel> itemModelList = itemDOList.stream().map(itemDO -> {
+            ItemStockDO itemStockDO = itemStockDOMapper.selectByItemId(itemDO.getId());
+            ItemModel itemModel = this.convertModelFromDataObject(itemDO, itemStockDO);
+            return itemModel;
+        }).collect(Collectors.toList());
+        return itemModelList;
     }
 
     @Override

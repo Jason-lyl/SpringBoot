@@ -1,4 +1,4 @@
-package com.maioshaproject.server.impl;
+package com.maioshaproject.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.maioshaproject.dao.UserDOMapper;
@@ -7,8 +7,8 @@ import com.maioshaproject.dataObject.UserDO;
 import com.maioshaproject.dataObject.UserPasswordDO;
 import com.maioshaproject.error.BusinessException;
 import com.maioshaproject.error.EmBusinessError;
-import com.maioshaproject.server.UserService;
-import com.maioshaproject.server.model.UserModel;
+import com.maioshaproject.service.UserService;
+import com.maioshaproject.service.model.UserModel;
 import com.maioshaproject.validator.ValidationResult;
 import com.maioshaproject.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.beans.Transient;
 
 @Service
 public class UserServiceImpl implements UserService {

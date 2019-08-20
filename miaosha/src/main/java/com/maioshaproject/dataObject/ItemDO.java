@@ -26,7 +26,7 @@ public class ItemDO {
      *
      * @mbg.generated Mon Aug 19 14:51:19 CST 2019
      */
-    private double price;
+    private Double price;
 
     /**
      *
@@ -111,7 +111,7 @@ public class ItemDO {
      *
      * @mbg.generated Mon Aug 19 14:51:19 CST 2019
      */
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -123,7 +123,7 @@ public class ItemDO {
      *
      * @mbg.generated Mon Aug 19 14:51:19 CST 2019
      */
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

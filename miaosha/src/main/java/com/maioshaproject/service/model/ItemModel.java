@@ -1,4 +1,4 @@
-package com.maioshaproject.server.model;
+package com.maioshaproject.service.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -29,9 +29,10 @@ public class ItemModel {
     //商品的销量
     private Integer sales;
 
+
     //商品的图片
     @NotBlank(message = "商品图片信息不能为空")
-    private String imageUrl;
+    private String imgUrl;
 
 
     public Integer getId() {
@@ -49,6 +50,10 @@ public class ItemModel {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getImgUrl() { return imgUrl; }
+
+    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
 
     public BigDecimal getPrice() {
         return price;
@@ -82,12 +87,6 @@ public class ItemModel {
         this.sales = sales;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }
 

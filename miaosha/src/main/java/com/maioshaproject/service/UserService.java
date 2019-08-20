@@ -1,7 +1,7 @@
-package com.maioshaproject.server;
+package com.maioshaproject.service;
 
 import com.maioshaproject.error.BusinessException;
-import com.maioshaproject.server.model.UserModel;
+import com.maioshaproject.service.model.UserModel;
 
 
 public interface  UserService  {
