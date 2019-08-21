@@ -44,7 +44,6 @@ public class ItemController extends BaseController{
 
     }
 
-
     //商品详情页浏览
     @RequestMapping(value = "/get", method = {RequestMethod.GET})
     @ResponseBody
@@ -54,7 +53,6 @@ public class ItemController extends BaseController{
 
         return  CommonReturnType.create(itemVO);
     }
-
 
     //商品列表页面浏览
     @RequestMapping(value = "/list", method = {RequestMethod.GET})
