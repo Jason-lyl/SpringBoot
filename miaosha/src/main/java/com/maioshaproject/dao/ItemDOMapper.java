@@ -1,6 +1,7 @@
 package com.maioshaproject.dao;
 
 import com.maioshaproject.dataObject.ItemDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,4 +57,5 @@ public interface ItemDOMapper {
     int updateByPrimaryKey(ItemDO record);
 
     List<ItemDO> listItem();
+    int increaseSales(@Param("id") Integer id, @Param("amount") Integer amount);
 }
