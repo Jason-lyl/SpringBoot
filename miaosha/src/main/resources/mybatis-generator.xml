@@ -8,7 +8,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <!--数据库连接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1/miaosha"
                         userId="root"
                         password="root">
@@ -50,10 +50,10 @@
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table tableName="item_stock" domainObjectName="ItemStockDO" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-               -->
-
+-->
         <table tableName="promo" domainObjectName="PromoDO" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
 
 
     </context>

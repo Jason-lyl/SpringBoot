@@ -20,6 +20,7 @@ public class PromoDO {
      * @mbg.generated Fri Aug 23 17:59:53 CST 2019
      */
     private Date startDate;
+    private Date endDate;
 
     /**
      *
@@ -166,5 +167,13 @@ public class PromoDO {
      */
     public void setPromoItemPrice(Double promoItemPrice) {
         this.promoItemPrice = promoItemPrice;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

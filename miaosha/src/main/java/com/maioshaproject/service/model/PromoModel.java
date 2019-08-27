@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 public class PromoModel {
     private Integer id;
 
+    //秒杀活动状态1表示还未开始，2表示进行中，3表示已结束
+    private Integer status;
+
     //秒杀活动的名称
     private String promoName;
 
@@ -68,5 +71,13 @@ public class PromoModel {
 
     public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

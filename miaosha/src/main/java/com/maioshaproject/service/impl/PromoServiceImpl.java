@@ -22,9 +22,24 @@ public class PromoServiceImpl implements PromoService {
 
         PromoDO promoDO = promoDOMapper.selectByItemId(itemId);
 
+        //dataObject ->model
         PromoModel promoModel= this.convertFromDataObject(promoDO);
+        if (promoModel == null){
+            return null;
+        }
 
-        return  null;
+        //判断当前时间是否秒杀活动即将开始或正在进行
+        DateTime now = new DateTime();
+        if (promoModel.getStartDate().isAfterNow()) {
+
+            promoModel.setStatus(1);
+        }else if (promoModel.getEndDate().isBeforeNow()){
+            promoModel.setStatus(3);
+        }else {
+            promoModel.setStatus(2);
+        }
+
+        return  promoModel;
     }
 
     private PromoModel convertFromDataObject(PromoDO promoDO){
@@ -35,6 +50,7 @@ public class PromoServiceImpl implements PromoService {
         BeanUtils.copyProperties(promoDO, promoModel);
         promoModel.setPromoItemPrice(new BigDecimal(promoDO.getPromoItemPrice()));
         promoModel.setStartDate(new DateTime(promoDO.getStartDate()));
+        promoModel.setEndDate(new DateTime(promoDO.getEndDate()));
         return  promoModel;
     }
 
