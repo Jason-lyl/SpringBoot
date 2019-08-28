@@ -26,8 +26,8 @@
                         <label class="control-label" id="description">
                         </div>
                 </div>
-            <div class="form-group">
-                     <label  class="control-label">价格</label>
+            <div class="form-group" id="normalPriceContainer">
+                     <label  class="control-label" >价格</label>
                         <div>
                             <label class="control-label" id="price">
                         </div>
@@ -83,7 +83,8 @@ var g_itemVO = {};
                     url:"http://localhost:8090/order/createorder",
                     data:{
                         "itemId":g_itemVO.id,
-                        "amount":1
+                        "amount":1,
+                        "promoId":g_itemVO.promoId,
                     },
                     xhrFields:{withCredentials:true},
                     success:function(data){
@@ -156,12 +157,13 @@ var g_itemVO = {};
                  
                 $("#promoStartDate").text("秒杀活动将于:  " +g_itemVO.startDate+" 开始售卖 倒计时："+delta+" 秒");
                 $("#promoPrice").text(g_itemVO.promoPrice);
-                $("createorder").attr("disabled", true);
+                $("#createorder").attr("disabled", true);
             } else if(g_itemVO.promoStatus == 2) {
                 //秒杀活动正在进行中
                 $("#promoStartDate").text("秒杀正在进行中");
                 $("#promoPrice").text(g_itemVO.promoPrice);
-                $("createorder").attr("disabled", false);
+                $("#createorder").attr("disabled", false);
+                $("#normalPriceContainer").hide();
 
             }
         }
